@@ -28,7 +28,7 @@ defmodule Numbers.Operators do
   end
 
   # Binary operators
-  for {fun, operator} <- [add: :+, sub: :-, mult: :*, div: :/] do
+  for {fun, operator} <- [add: :+, sub: :-, mult: :*, div: :/, lt?: :<, gt?: :>, eq?: :==, lt_eq?: :<=, lt_gt_eq?: :>=] do
     @fun fun
     @operator operator
     defmacro unquote(operator)(a, b) do

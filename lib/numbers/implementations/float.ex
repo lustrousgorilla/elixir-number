@@ -35,6 +35,14 @@ defimpl Numbers.Protocols.ToFloat, for: Float do
   def to_float(x), do: x
 end
 
+defimpl Numbers.Protocols.Comparison, for: Float do
+  def lt?(a, b), do: a < b
+  def gt?(a, b), do: a > b
+  def eq?(a, b), do: a == b
+  def lt_eq?(a, b), do: a <= b
+  def gt_eq?(a, b), do: a >= b
+end
+
 # Allow functions to be called with an int as other argument as well
 require Coerce
 Coerce.defcoercion(Integer, Float) do

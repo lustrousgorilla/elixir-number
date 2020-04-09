@@ -178,3 +178,27 @@ defprotocol Numbers.Protocols.ToFloat do
   @spec to_float(t) :: {:ok, t_as_float :: float} | :error
   def to_float(num)
 end
+
+defprotocol Numbers.Protocols.Comparison do
+  @moduledoc """
+  TODO
+  """
+
+  @doc """
+  TODO for all
+  """
+  @spec lt?(t, t) :: boolean
+  def lt?(a, b)
+
+  @spec gt?(t, t) :: boolean
+  def gt?(a, b)
+
+  @spec lt_eq?(t, t) :: boolean
+  def lt_eq?(a, b)
+
+  @spec eq?(t, t) :: boolean
+  def eq?(a, b)
+
+  @spec gt_eq?(t, t) :: boolean
+  def gt_eq?(a, b)
+end

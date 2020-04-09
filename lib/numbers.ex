@@ -153,6 +153,35 @@ defmodule Numbers do
   @spec to_float(t) :: {:ok, t_as_float :: float} | :error
   defdelegate to_float(num), to: Numbers.Protocols.ToFloat
 
+  @spec lt?(t, t) :: boolean
+  def lt?(a, b) do
+    {a, b} = Coerce.coerce(a, b)
+    Numbers.Protocols.Comparison.lt?(a, b)
+  end
+
+  @spec gt?(t, t) :: boolean
+  def gt?(a, b) do
+    {a, b} = Coerce.coerce(a, b)
+    Numbers.Protocols.Comparison.gt?(a, b)
+  end
+
+  @spec eq?(t, t) :: boolean
+  def eq?(a, b) do
+    {a, b} = Coerce.coerce(a, b)
+    Numbers.Protocols.Comparison.eq?(a, b)
+  end
+
+  @spec lt_eq?(t, t) :: boolean
+  def lt_eq?(a, b) do
+    {a, b} = Coerce.coerce(a, b)
+    Numbers.Protocols.Comparison.lt_eq?(a, b)
+  end
+
+  @spec gt_eq?(t, t) :: boolean
+  def gt_eq?(a, b) do
+    {a, b} = Coerce.coerce(a, b)
+    Numbers.Protocols.Comparison.gt_eq?(a, b)
+  end
 
   defmacro __using__(opts) do
     if opts[:overload_operators] != true do
@@ -168,7 +197,7 @@ defmodule Numbers do
       """
     else
       quote do
-        import Kernel, except: [abs: 1, *: 2, /: 2, -: 2, -: 1, +: 2]
+        import Kernel, except: [abs: 1, *: 2, /: 2, -: 2, -: 1, +: 2, <: 2, >: 2, ==: 2, <=: 2, >=: 2]
         import Numbers.Operators
       end
     end

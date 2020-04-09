@@ -30,6 +30,15 @@ defimpl Numbers.Protocols.Exponentiation, for: Integer do
     Numbers.Helper.pow_by_sq(x, n)
   end
 end
+
+defimpl Numbers.Protocols.Comparison, for: Integer do
+  def lt?(a, b), do: a < b
+  def gt?(a, b), do: a > b
+  def eq?(a, b), do: a == b
+  def lt_eq?(a, b), do: a <= b
+  def gt_eq?(a, b), do: a >= b
+end
+
 defimpl Numbers.Protocols.ToFloat, for: Integer do
   def to_float(x), do: x + 0.0
 end

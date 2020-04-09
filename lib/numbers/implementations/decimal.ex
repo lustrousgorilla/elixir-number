@@ -37,6 +37,14 @@ if Code.ensure_loaded?(Decimal) do
     defdelegate pow(num, power), to: Numbers.Helper, as: :pow_by_sq
   end
 
+  defimpl Numbers.Protocols.Comparison, for: Decimal do
+    defdelegate lt?(a, b), to: Decimal
+    defdelegate gt?(a, b), to: Decimal
+    defdelegate eq?(a, b), to: Decimal
+    def lt_eq?(a, b), do: Decimal.cmp(a, b) in [:lt, :eq]
+    def gt_eq?(a, b), do: Decimal.cmp(a, b) in [:gt, :eq]
+  end
+
   require Coerce
 
   Coerce.defcoercion(Decimal, Integer) do
