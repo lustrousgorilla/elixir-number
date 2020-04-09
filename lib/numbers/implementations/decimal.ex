@@ -55,7 +55,7 @@ if Code.ensure_loaded?(Decimal) do
 
   Coerce.defcoercion(Decimal, Float) do
     def coerce(decimal, float) do
-      {decimal, Decimal.new(float)}
+      {decimal, Decimal.from_float(float)}
     end
   end
 end
